@@ -1,0 +1,3 @@
+i need to add a search feature. need to handle 500 users and 5000 products. 
+need to add django rest framework and jwt
+All APIs must be built using Django REST Framework, follow REST principles, support pagination, filtering, and API versioning.

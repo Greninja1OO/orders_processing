@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order History</title>
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background-color: #2196F3; color: white; }
+        .back-link { display: inline-block; margin-top: 20px; padding: 10px; background-color: #2196F3; color: white; text-decoration: none; }
+    </style>
+</head>
+<body>
+<h1>Order History</h1>
+
+<table>
+    <tr>
+        <th>Item Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Status</th>
+        <th>Order Date</th>
+    </tr>
+    {% for order in orders %}
+    <tr>
+        <td>{{ order.item_name }}</td>
+        <td>{{ order.quantity }}</td>
+        <td>${{ order.price }}</td>
+        <td>{{ order.status }}</td>
+        <td>{{ order.order_date }}</td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="5">No orders yet</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<a href="{% url 'order:makeorder' %}" class="back-link">Back to Orders</a>
+</body>
+</html>

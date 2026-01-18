@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Make Order</title>
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background-color: #4CAF50; color: white; }
+        form { margin-top: 20px; padding: 15px; border: 1px solid #ddd; }
+        input, button { padding: 8px; margin: 5px; }
+        button { background-color: #4CAF50; color: white; cursor: pointer; }
+    </style>
+</head>
+<body>
+<h1>Place an Order</h1>
+
+<h2>Available Products</h2>
+<table>
+    <tr>
+        <th>Product Name</th>
+        <th>Price</th>
+        <th>Available Stock</th>
+    </tr>
+    {% for product in products %}
+    <tr>
+        <td>{{ product.item_name }}</td>
+        <td>${{ product.price }}</td>
+        <td>{{ product.quantity }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h2>Order Form</h2>
+<form method="POST">
+    {% csrf_token %}
+    <label>Item Name:</label>
+    <input type="text" name="item_name" required>
+    
+    <label>Quantity:</label>
+    <input type="number" name="quantity" required>
+    
+    <!-- <label>Price:</label>
+     -->
+
+    <button type="submit">Place Order</button>
+</form>
+
+<a href="{% url 'order:history' %}">View Order History</a>
+</body>
+</html>
